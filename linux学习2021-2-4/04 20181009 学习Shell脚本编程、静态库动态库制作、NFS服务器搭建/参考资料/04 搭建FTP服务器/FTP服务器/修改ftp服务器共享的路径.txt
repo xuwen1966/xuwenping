@@ -1,0 +1,13 @@
+如何修改vsftpd的默认根目录/var/ftp/pub到另一个目录？
+修改ftp的根目录只要修改/etc/vsftpd/vsftpd.conf文件即可：
+加入如下几行：
+local_root=/var/www/html
+chroot_local_user=YES
+anon_root=/var/www/html
+
+注：local_root 针对系统用户；anon_root 针对匿名用户。
+
+重新启动服务：
+service vsftpd restart
+任何一个用户ftp登录到这个服务器上都会chroot到/var/www/html目录下。
+
